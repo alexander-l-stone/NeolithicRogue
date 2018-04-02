@@ -1,5 +1,6 @@
 from gameobject import GameObject
 from area import Area
+from generator import *
 import tdl
 
 class Game:
@@ -15,7 +16,6 @@ class Game:
         self.MSG_X = 2
         self.MSG_WIDTH = 30
         self.MSG_HEIGHT = self.PANEL_HEIGHT - 5
-
 
         self.MOVEMENT_KEYS = {
             'UP': [0,-1],
@@ -64,8 +64,8 @@ class Game:
 
 
 main_game = Game();
-initialArea = Area(0,0, 200, 200, 'savannah', 'Sav 0,0', (204, 255, 51))
-tree = GameObject('T', (0, 102, 0), 32, 32)
-initialArea.objList.append(tree)
+initialArea = Area(0,0, 500, 500, 'savannah', 'Sav 0,0', (204, 255, 51))
 main_game.currentArea = initialArea
+newGenerator = SavannahGenerator()
+newGenerator.generateTrees(main_game.currentArea)
 main_game.game_loop()

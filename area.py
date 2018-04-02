@@ -17,7 +17,8 @@ class Area:
     def draw(self, console, topx, topy, sw, sh):
         for drawx in range(0, sw):
             for drawy in range (0, sh):
-                console.draw_char(drawx-topx, drawy-topy, ' ', bg=self.floorColor)
+                if ((topx-drawx > self.x-self.width//2) and (topx-drawx < self.x+self.width//2)) and ((drawy-topy > self.y-self.height//2) and (drawy-topy < self.y+self.height//2)):
+                    console.draw_char(drawx-topx, drawy-topy, ' ', bg=self.floorColor)
         for obj in self.objList:
             obj.draw(console, topx, topy, sw, sh)
         for animal in self.animalList:
