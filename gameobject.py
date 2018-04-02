@@ -1,10 +1,12 @@
 class GameObject:
-    def __init__(self, char, color, x, y, bgcolor=None):
+    def __init__(self, char, color, x, y, visionBlock=False, moveBlock=False, bgcolor=None,):
         self.char = char
         self.color = color
         self.x = x
         self.y = y
         self.bgcolor = bgcolor
+        self.visionBlock = visionBlock
+        self.moveBlock = moveBlock
 
     def draw(self, console, topx, topy, sw, sh):
         if (self.x-topx > 0) and (self.y-topy > 0) and (self.x-topx < sw) and (self.y-topy < sh):

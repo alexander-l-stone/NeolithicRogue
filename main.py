@@ -67,5 +67,5 @@ main_game = Game();
 initialArea = Area(0,0, 500, 500, 'savannah', 'Sav 0,0', (204, 255, 51))
 main_game.currentArea = initialArea
 newGenerator = SavannahGenerator()
-newGenerator.generateTrees(main_game.currentArea)
+newGenerator.generate(main_game.currentArea)
 main_game.game_loop()
