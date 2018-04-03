@@ -1,6 +1,7 @@
 from gameobject import GameObject
 from area import Area
 from generator import *
+from character import Character
 import tdl
 
 class Game:
@@ -49,23 +50,32 @@ class Game:
         self.fov_recompute = True
         self.game_state = 'playing'
         self.currentArea = None
+        self.player = Character('@', (255,0,255), self.CENTERX, self.CENTERY, 'Player')
 
     def render_game(self):
-        self.currentArea.draw(self.console, 0, 0, self.SCREEN_WIDTH, self.SCREEN_HEIGHT)
+        self.currentArea.draw(self.console, self.player.x-self.CENTERX, self.player.y-self.CENTERY, self.SCREEN_WIDTH, self.SCREEN_HEIGHT)
         self.main_window.blit(self.console, 0, 0, self.SCREEN_WIDTH, self.SCREEN_HEIGHT, 0, 0)
         tdl.flush()
-        self.currentArea.clear(self.console, -self.CENTERX, -self.CENTERY, self.SCREEN_WIDTH, self.SCREEN_HEIGHT)
+        for drawx in range(0, self.SCREEN_WIDTH):
+                for drawy in range(0, self.SCREEN_HEIGHT):
+                    self.console.draw_char(drawx, drawy, ' ', bg=self.currentArea.floorColor)
 
     def game_loop(self):
         while not tdl.event.is_window_closed():
             if self.game_state == 'playing':
                 self.render_game()
+                for event in tdl.event.get():
+                    if event.type == 'KEYDOWN' and event.keychar != 'TEXT' and self.game_state == 'playing':
+                        key_x, key_y = self.MOVEMENT_KEYS.get(event.keychar, (0,0))
+                        action = self.ACTION_KEYS.get(event.keychar, (0,0))
+                        self.player.move(self.currentArea, key_x, key_y)
 
 
 
 main_game = Game();
-initialArea = Area(0,0, 250, 250, 'savannah', 'Sav 0,0', (204, 255, 51))
+initialArea = Area(0,0, 500, 500, 'savannah', 'Sav 0,0', (204, 255, 51))
 main_game.currentArea = initialArea
+main_game.currentArea.animalList.append(main_game.player)
 newGenerator = SavannahGenerator()
 newGenerator.generate(main_game.currentArea)
 main_game.game_loop()
