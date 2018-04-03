@@ -64,7 +64,7 @@ class Game:
 
 
 main_game = Game();
-initialArea = Area(0,0, 500, 500, 'savannah', 'Sav 0,0', (204, 255, 51))
+initialArea = Area(0,0, 250, 250, 'savannah', 'Sav 0,0', (204, 255, 51))
 main_game.currentArea = initialArea
 newGenerator = SavannahGenerator()
 newGenerator.generate(main_game.currentArea)

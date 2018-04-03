@@ -1,7 +1,7 @@
 #This area holds the basic terrain and location of stuff for a displayed zone
 
 class Area:
-    def __init__(self, x, y, h, w, areaType, name, floorColor, objList = [], animalList = []):
+    def __init__(self, x, y, h, w, areaType, name, floorColor, objList = {}, animalList = []):
         self.x = x
         self.y = y
         self.height = h
@@ -19,8 +19,8 @@ class Area:
             for drawy in range (0, sh):
                 if ((topx-drawx > self.x-self.width//2) and (topx-drawx < self.x+self.width//2)) and ((drawy-topy > self.y-self.height//2) and (drawy-topy < self.y+self.height//2)):
                     console.draw_char(drawx-topx, drawy-topy, ' ', bg=self.floorColor)
-        for obj in self.objList:
-            obj.draw(console, topx, topy, sw, sh)
+        for key,val in self.objList.items():
+            val.draw(console, topx, topy, sw, sh)
         for animal in self.animalList:
             animal.draw(console, topx, topy, sw, sh)
 
@@ -28,7 +28,7 @@ class Area:
         for drawx in range(0, sw):
             for drawy in range (0, sh):
                 console.draw_char(drawx-topx, drawy-topy, ' ', bg=clearbg)
-        for obj in self.objList:
-            obj.clear(console, topx, topy, sw, sh, clearbg)
+        for key,val in self.objList.items():
+            val.clear(console, topx, topy, sw, sh, clearbg)
         for animal in self.animalList:
             animal.clear(console, topx, topy, sw, sh, clearbg)
