@@ -38,7 +38,7 @@ class SavannahGenerator:
                 foundCollision = True;
             if not foundCollision:
                 typeOfRock = randrange(0,101)
-                if typeOfRock > 98:
+                if typeOfRock > 90:
                     bigRock = GameObject('#', (102,51,0), randx, randy, visionBlock=True, moveBlock=True)
                     area.objList[(bigRock.x, bigRock.y)] = bigRock
                     for x in range(bigRock.x-1, bigRock.x+2):

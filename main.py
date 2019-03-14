@@ -2,6 +2,7 @@ from gameobject import GameObject
 from area import Area
 from generator import *
 from character import Character
+import tcod
 import tdl
 
 class Game:
@@ -72,8 +73,8 @@ class Game:
 
 
 
-main_game = Game();
-initialArea = Area(0,0, 500, 500, 'savannah', 'Sav 0,0', (204, 255, 51))
+main_game = Game()
+initialArea = Area(0,0, 500, 500, 'savannah', 'Sav 0,0', (151, 200, 51))
 main_game.currentArea = initialArea
 main_game.currentArea.animalList.append(main_game.player)
 newGenerator = SavannahGenerator()
