@@ -2,14 +2,6 @@ from ..character import Character
 from ..area import Area
 import pytest
 
-@pytest.fixture
-def character():
-    return Character('@', (200,200,200), 0, 0, 'test', visionBlock=False, moveBlock=False, bgcolor=None)
-
-@pytest.fixture
-def area():
-    return Area(0,0, 50, 50, 'test', 'test', (0,0,0))
-
 def test_character_exists():
     assert Character
 
