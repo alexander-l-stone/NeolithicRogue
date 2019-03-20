@@ -4,11 +4,17 @@ from random import *
 #TODO: Add seed to RNG
 #tree GameObject('T', (0, 102, 0), 32, 32)
 
-class SavannahGenerator:
+class AreaGenerator:
     def __init__(self):
-        self.seed = 0
+        return
+
+class SavannahGenerator(AreaGenerator):
+    def __init__(self):
+        SavannahGenerator.__init__(self)
 
     def generate(self, area):
+        random.seed(area.seed)
+        self.generateWater(area)
         self.generateTrees(area)
         self.generateRocks(area)
 
@@ -23,7 +29,7 @@ class SavannahGenerator:
                 randTreeY = randrange(randy-10, randy+11)
                 foundCollision = False
                 if ((randTreeX, randTreeY) in area.objList.values()):
-                    foundCollision = True;
+                    foundCollision = True
                 if not foundCollision:
                     newTree = GameObject('T', (0, 102, 0), randTreeX, randTreeY, moveBlock=True)
                     area.objList[(newTree.x, newTree.y)] = newTree
@@ -35,7 +41,7 @@ class SavannahGenerator:
             randy = randrange(area.y-area.height//2+2, area.y+area.height//2-2)
             foundCollision = False
             if ((randx, randy) in area.objList.values()):
-                foundCollision = True;
+                foundCollision = True
             if not foundCollision:
                 typeOfRock = randrange(0,101)
                 if typeOfRock > 90:
@@ -45,7 +51,7 @@ class SavannahGenerator:
                         for y in range(bigRock.y-1, bigRock.y+2):
                             foundCollision = False
                             if ((x, y) in area.objList.values()):
-                                foundCollision = True;
+                                foundCollision = True
                             if not foundCollision:
                                 if randrange(0,101) > 35:
                                     smallRock = GameObject('o', (153, 102, 0), x, y, moveBlock=True)
@@ -53,3 +59,6 @@ class SavannahGenerator:
                 else:
                     smallRock = GameObject('o', (153, 102, 0), randx, randy, moveBlock=True)
                     area.objList[(smallRock.x, smallRock.y)] = smallRock
+    
+    def generateWater(self, area):
+        return
