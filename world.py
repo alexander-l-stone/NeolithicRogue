@@ -10,7 +10,7 @@ class World:
         random.seed(self.seed)
         self.rand_state = random.getstate()
         #eventually grab this from a file
-        self.biomes = ['savannah', 'desert']
+        self.biomes = ['savannah', 'desert', 'forest']
     
     def add_area(self, area):
         self.loaded_areas[(area.x, area.y)] = area
@@ -31,4 +31,5 @@ class World:
     
     def generate_new_area(self, key):
         random.setstate(self.rand_state)
+        
 

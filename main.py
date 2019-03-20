@@ -74,7 +74,7 @@ class Game:
 
 
 main_game = Game()
-initialArea = Area(0,0, 500, 500, 'savannah', 'Sav 0,0', (151, 200, 51))
+initialArea = Area(0,0, 500, 500, 'savannah', 'Sav 0,0', (151, 200, 51), 4712839)
 main_game.currentArea = initialArea
 main_game.currentArea.animalList.append(main_game.player)
 newGenerator = SavannahGenerator()
