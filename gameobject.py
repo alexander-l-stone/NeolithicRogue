@@ -1,5 +1,5 @@
 class GameObject:
-    def __init__(self, char, color, x, y, visionBlock=False, moveBlock=False, bgcolor=None):
+    def __init__(self, char, color, x, y, name, visionBlock=False, moveBlock=False, bgcolor=None):
         self.char = char
         self.color = color
         self.x = x

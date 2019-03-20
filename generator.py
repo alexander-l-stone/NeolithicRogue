@@ -27,14 +27,14 @@ class SavannahGenerator(AreaGenerator):
             numTrees = random.randrange(0, 81)
             for tree in range(numTrees):
                 randTreeTheta = random.randrange(0,360)
-                randTreeR = random.randrange(0,11)
+                randTreeR = random.randrange(0,36)
                 foundCollision = False
                 randTreeX = int(randx + randTreeR * cos(randTreeTheta))
                 randTreeY = int(randy + randTreeR * sin(randTreeTheta))
                 if ((randTreeX, randTreeY) in area.objList.values()):
                     foundCollision = True
                 if not foundCollision:
-                    newTree = GameObject('T', (0, 102, 0), randTreeX, randTreeY, moveBlock=True)
+                    newTree = GameObject('T', (0, 102, 0), randTreeX, randTreeY, "Tree", moveBlock=True)
                     area.objList[(newTree.x, newTree.y)] = newTree
 
     def generateRocks(self, area):
@@ -47,8 +47,8 @@ class SavannahGenerator(AreaGenerator):
                 foundCollision = True
             if not foundCollision:
                 typeOfRock = random.randrange(0,101)
-                if typeOfRock > 90:
-                    bigRock = GameObject('#', (102,51,0), randx, randy, visionBlock=True, moveBlock=True)
+                if typeOfRock > 60:
+                    bigRock = GameObject('#', (102,51,0), randx, randy, 'Big-Rock', visionBlock=True, moveBlock=True)
                     area.objList[(bigRock.x, bigRock.y)] = bigRock
                     for x in range(bigRock.x-1, bigRock.x+2):
                         for y in range(bigRock.y-1, bigRock.y+2):
@@ -57,10 +57,18 @@ class SavannahGenerator(AreaGenerator):
                                 foundCollision = True
                             if not foundCollision:
                                 if random.randrange(0,101) > 35:
-                                    smallRock = GameObject('o', (153, 102, 0), x, y, moveBlock=True)
+                                    flintChance = random.randrange(0,101)
+                                    if flintChance > 90:
+                                        smallRock = GameObject('o', (80, 80, 80), randx, randy, 'Flint', moveBlock=True)
+                                    else:
+                                        smallRock = GameObject('o', (153, 102, 0), randx, randy, 'Small-Rock', moveBlock=True)
                                     area.objList[(smallRock.x, smallRock.y)] = smallRock
                 else:
-                    smallRock = GameObject('o', (153, 102, 0), randx, randy, moveBlock=True)
+                    flintChance = random.randrange(0,101)
+                    if flintChance > 90:
+                        smallRock = GameObject('o', (80, 80, 80), randx, randy, 'Flint', moveBlock=True)
+                    else:
+                        smallRock = GameObject('o', (153, 102, 0), randx, randy, 'Small-Rock', moveBlock=True)
                     area.objList[(smallRock.x, smallRock.y)] = smallRock
     
     def generateWater(self, area):
