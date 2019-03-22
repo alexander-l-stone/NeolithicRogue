@@ -1,5 +1,5 @@
-from gameobject import GameObject
-from actionmanager import *
+from .gameobject import GameObject
+from .actionmanager import *
 
 class Character(GameObject):
     def __init__(self, char, color, x, y, name, visionBlock=False, moveBlock=False, bgcolor=None):

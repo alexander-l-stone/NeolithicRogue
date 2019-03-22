@@ -1,5 +1,5 @@
 #Random generation functions go here
-from gameobject import GameObject
+from .gameobject import GameObject
 import random
 from math import cos, sin
 #TODO: Add seed to RNG

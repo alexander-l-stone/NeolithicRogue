@@ -1,7 +1,7 @@
-from gameobject import GameObject
-from area import Area
-from generator import *
-from character import Character
+from source.gameobject import GameObject
+from source.area import Area
+from source.generator import *
+from source.character import Character
 import tcod
 import tdl
 
@@ -72,11 +72,11 @@ class Game:
                         self.player.move(self.currentArea, key_x, key_y)
 
 
-
-main_game = Game()
-initialArea = Area(0,0, 500, 500, 'savannah', 'Sav 0,0', (151, 200, 51), 4712839)
-main_game.currentArea = initialArea
-main_game.currentArea.animalList.append(main_game.player)
-newGenerator = SavannahGenerator()
-newGenerator.generate(main_game.currentArea)
-main_game.game_loop()
+if __name__ == "__main__":
+    main_game = Game()
+    initialArea = Area(0,0, 500, 500, 'savannah', 'Sav 0,0', (151, 200, 51), 4712839)
+    main_game.currentArea = initialArea
+    main_game.currentArea.animalList.append(main_game.player)
+    newGenerator = SavannahGenerator()
+    newGenerator.generate(main_game.currentArea)
+    main_game.game_loop()

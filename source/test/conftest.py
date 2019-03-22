@@ -10,11 +10,11 @@ def character():
 
 @pytest.fixture
 def area():
-    return Area(0,0, 50, 50, 'test', 'test', (0,0,0))
+    return Area(0,0, 50, 50, 'test', 'test', (0,0,0), 213913)
 
 @pytest.fixture
 def gameobject():
-    return GameObject('#', (100,100,100), 1, 1)
+    return GameObject('#', (100,100,100), 1, 1, 'test')
 
 @pytest.fixture
 def tile():
